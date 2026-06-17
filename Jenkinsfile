@@ -45,22 +45,25 @@ pipeline {
     }
 
     post {
-
         success {
             echo 'Build successful'
         }
 
         failure {
-            mail to: "tranet513@gmail.com",
+            emailext (
+                to: "srengty@gmail.com, tranet513@gmail.com",
                 subject: "❌ Jenkins Build Failed - ${env.JOB_NAME}",
                 body: """
-        Build failed in Jenkins.
+    Build failed in Jenkins.
 
-        Job: ${env.JOB_NAME}
-        Build Number: ${env.BUILD_NUMBER}
+    Job: ${env.JOB_NAME}
+    Build Number: ${env.BUILD_NUMBER}
 
-        Check console output for details.
-        """
+    Check attached console log.
+    """,
+                attachLog: true,
+                compressLog: true
+            )
         }
     }
 }
