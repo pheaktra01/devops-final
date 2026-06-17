@@ -49,7 +49,7 @@ pipeline {
         failure {
             emailext (
                 to: "srengty@gmail.com",
-                cc: "${env.GIT_COMMITTER_EMAIL}",
+                cc: "tranet513@gmail.com",
                 subject: "❌ Jenkins Build Failed - ${env.JOB_NAME}",
                 body: """
     Build failed in Jenkins.
