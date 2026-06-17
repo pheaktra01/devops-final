@@ -47,18 +47,16 @@ pipeline {
         }
 
         failure {
-            emailext (
-                to: "srengty@gmail.com",
-                cc: "tranet513@gmail.com",
+            mail to: "srengty@gmail.com, tranet513@gmail.com",
                 subject: "❌ Jenkins Build Failed - ${env.JOB_NAME}",
-                body: """Build failed in Jenkins.
+                body: """
+        Build failed in Jenkins.
 
         Job: ${env.JOB_NAME}
         Build Number: ${env.BUILD_NUMBER}
 
         Check console output for details.
         """
-            )
         }
     }
 }
