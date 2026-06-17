@@ -5,10 +5,6 @@ pipeline {
         pollSCM('* * * * *')
     }
 
-    tools {
-            maven 'Maven-3.9.15
-    }
-
     environment {
         APP_DIR = "."
         PLAYBOOK = "ansible/deploy.yml"
