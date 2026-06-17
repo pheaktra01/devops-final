@@ -24,6 +24,11 @@ public class ProfileController {
         this.service = service;
     }
 
+    @GetMapping("/")
+    public String home() {
+        return "index";
+    }   
+
     @PostMapping
     public Profile create(@RequestBody Profile p) {
         return service.create(p);
