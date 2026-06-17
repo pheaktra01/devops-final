@@ -35,11 +35,22 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public Profile update(Long id, Profile profile) {
         Profile existing = getById(id);
-        existing.setFullName(profile.getFullName());
-        existing.setEmail(profile.getEmail());
-        existing.setPhone(profile.getPhone());
-        existing.setDepartment(profile.getDepartment());
-        existing.setType(profile.getType());
+
+        if (profile.getFullName() != null)
+            existing.setFullName(profile.getFullName());
+
+        if (profile.getEmail() != null)
+            existing.setEmail(profile.getEmail());
+
+        if (profile.getPhone() != null)
+            existing.setPhone(profile.getPhone());
+
+        if (profile.getDepartment() != null)
+            existing.setDepartment(profile.getDepartment());
+
+        if (profile.getType() != null)
+            existing.setType(profile.getType());
+
         return profileRepository.save(existing);
     }
 

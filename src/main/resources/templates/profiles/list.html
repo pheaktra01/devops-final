@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Profiles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-8">
+    <div class="max-w-6xl mx-auto">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold">Profiles</h1>
+            <a href="/profiles/new" class="bg-blue-600 text-white px-4 py-2 rounded"> + New Profile</a>
+        </div>
+
+        <div class="bg-white shadow rounded-lg overflow-hidden">
+            <table class="min-w-full">
+                <thead class="bg-gray-50 border-b">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Reg. No.</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Department</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Template</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    <tr th:each="profile : ${profiles}">
+                        <td class="px-6 py-4" th:text="${profile.registrationNumber}">2026-ENG-001</td>
+                        <td class="px-6 py-4" th:text="${profile.fullName}">Name</td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 py-1 rounded text-xs bg-blue-100 text-blue-800" th:text="${profile.type != null ? profile.type : ''}">STUDENT</span>
+                        </td>
+                        <td class="px-6 py-4" th:text="${profile.department}">Dept</td>
+                        <td class="px-6 py-4" th:text="${profile.template != null ? profile.template.name : ''}">Template Name</td>
+                        <td class="px-6 py-4 flex gap-2">
+                            <a th:href="@{'/profiles/card/' + ${profile.id}}" class="text-xs border px-2 py-1 rounded">Card</a>
+                            <a th:href="@{'/profiles/edit/' + ${profile.id}}" class="text-xs border px-2 py-1 rounded">Edit</a>
+                            <a th:href="@{'/profiles/pdf/' + ${profile.id}}" class="text-xs border px-2 py-1 rounded bg-blue-600 text-white">PDF</a>
+                            <form th:action="@{'/api/profiles/' + ${profile.id} + '/delete'}" method="post">
+                                <button type="submit" class="text-xs border px-2 py-1 rounded bg-red-600 text-white">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

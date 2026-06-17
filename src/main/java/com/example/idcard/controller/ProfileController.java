@@ -24,19 +24,14 @@ public class ProfileController {
         this.service = service;
     }
 
-    @GetMapping("/")
-    public String home() {
-        return "index";
-    }   
+    @GetMapping
+    public List<Profile> getAll() {
+        return service.getAll();
+    }
 
     @PostMapping
     public Profile create(@RequestBody Profile p) {
         return service.create(p);
-    }
-
-    @GetMapping
-    public List<Profile> getAll() {
-        return service.getAll();
     }
 
     @GetMapping("/{id}")
@@ -49,7 +44,7 @@ public class ProfileController {
         return service.update(id, p);
     }
 
-    @DeleteMapping("/{id}")
+    @PostMapping("/{id}/delete")
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
