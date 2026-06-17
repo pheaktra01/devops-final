@@ -11,14 +11,12 @@ pipeline {
     }
 
     stages {
+
         stage('Test Maven') {
             steps {
                 bat 'mvn -v'
             }
         }
-    }
-
-    stages {
 
         stage('Checkout') {
             steps {
