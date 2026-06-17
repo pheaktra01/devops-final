@@ -2,7 +2,11 @@ pipeline {
     agent any
 
     triggers {
-        pollSCM('* * * * *') // every 5 minutes
+        pollSCM('* * * * *')
+    }
+
+    tools {
+            maven 'Maven-3.9.15
     }
 
     environment {
